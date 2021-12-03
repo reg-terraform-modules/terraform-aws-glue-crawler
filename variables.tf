@@ -58,6 +58,12 @@ variable "s3_source_path" {
   type        = string
 }
 
+variable "configuration" {
+  description = "configuration string, in json format"
+  type = string
+  default = null
+}
+
 #Optional variables - default values used unless others specified:
 variable "resource_tags" {
   description = "Defaults to no tags. If needed, env vars can be given in parent module variables.tf, and assigned in child module call"

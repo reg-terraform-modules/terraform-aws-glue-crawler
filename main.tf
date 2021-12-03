@@ -19,4 +19,5 @@ resource "aws_glue_crawler" "this" {
   s3_target {
     path = var.s3_source_path
   }
+  configuration = (var.configuration != "" ? jsonencode(var.configuration) : null)
 }
