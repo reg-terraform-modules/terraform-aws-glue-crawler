@@ -1,69 +1,22 @@
-# Resource/function: Glue. Data catalog. crawler
+# glue-crawler
 
-## Purpose
-Generic code for generating crawler in the data catalog.
+This module generates a Glue Crawler for scanning through S3 folders and generating a database table.
 
-## Description
-Establishes a Glue crawler in the Data Catalog. 
+## Module description
+Generates the Glue Crawler for scanning a specific S3 subfolder and generating a table in a specific database. 
 
-### Resources
-- `aws_glue_crawler` 
-    - establishes crawlers 
+## Requires
+For all required inputs, see details on Terraform Cloud. Below are inputs that require further description
 
-## Input variables
-### Required
-- `env`
-    - environment  (dev/prod)
+- database_name
+    - name of the Glue database where the resulting table shall be located
+- iam_role_arn
+    - the arn of a IAM role that has permissions to run the crawler, access necessary S3 folders, and generate the new table. 
+- cron_schedule
+    - cron formatted schedule expression for the intervals/timings of running the crawler
+- target_table
+    - this variable is no longer used in the crawler setup, but is included as part of the crawler name
 
-- `project_name`
-    - name of the project - used as prefix in the crawler-name
+## Usage
+See available code in projects. 
 
-- `database_name`
-    - database name - where the table will be created
-
-- `target_table`
-    - target table - used as part of crawler-name
-
-- `iam_role_arn`
-    - iam role arn - assigned iam role
-
-- `schedule`
-    - schedule - cron format for automated run
-
-- `prefix`
-    - prefix - used to group tables created by crawler
-
-- `s3_source_path`
-    - s3 source - path of the source
-
-### Optional (default values used unless specified)
-- `resource_tags`
-    - tags of crawler
-    - default: `"tag" = "none given"`
-
-## Output variables
-- `name`
-    - name of the crawler
-- `arn`
-    - arn of the crawler
-- `id`
-    - id of the crawler
-
-## Example use
-The below example generates a crawler as a module using the terraform scripts
-
-```sql
-module "crawler_fact_visit_station" {
-  source         = "git::https://github.com/reg-dataplatform/reg-aws-terraform-library//glue/database?ref=0.35.dev"
-  providers      = {aws = aws}
-  env            = var.env
-  project_name   = var.project_name
-  database_name  = var.database_name
-  target_table   = var.table_fact_name
-  iam_role_arn   = module.iam_role_for_glue.arn
-  resource_tags  = var.resource_tags
-  s3_source_path = "s3://${var.dataplatform_bucket}/${var.s3_path_key}"
-}
-```
-
-## Further work
