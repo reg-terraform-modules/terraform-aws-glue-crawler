@@ -9,13 +9,13 @@ variable "project_name" {
   type        = string
 }
 
-variable "database_name" {
-  description = "Database name in the (Data catalog) of Glue service"
+variable "module_name" {
+  description = "module name"
   type        = string
 }
 
-variable "target_table" {
-  description = "target athena table"
+variable "database_name" {
+  description = "Database name in the (Data catalog) of Glue service"
   type        = string
 }
 
@@ -29,7 +29,7 @@ variable "cron_schedule" {
   type        = string
 }
 
-variable "prefix" {
+variable "table_prefix" {
   description = "prefix for all tables"
   type        = string
   default     = ""

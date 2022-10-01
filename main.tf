@@ -1,5 +1,5 @@
 locals {
-  crawler_name = join("", [var.project_name, "-", "crawler", "_", var.target_table, "-", var.env])
+  crawler_name = join("", [var.project_name, "-", var.module_name, "_", var.table_prefix, "-", var.env])
 }
 
 resource "aws_glue_crawler" "this" {
@@ -8,7 +8,7 @@ resource "aws_glue_crawler" "this" {
   role          = var.iam_role_arn
   tags          = var.resource_tags
   schedule      = var.cron_schedule
-  table_prefix  = var.prefix
+  table_prefix  = join("", [var.table_prefix,"_"])  
   schema_change_policy {
     delete_behavior = (var.delete_behavior != "" ? var.delete_behavior : null)
     update_behavior = (var.update_behavior != "" ? var.update_behavior : null)
