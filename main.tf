@@ -1,5 +1,5 @@
 locals {
-  crawler_name = join("", [var.project_name, "-", var.module_name, "_", var.table_prefix, "-", var.env])
+  crawler_name = join("", [var.project_name, "-crawler"])
 }
 
 resource "aws_glue_crawler" "this" {

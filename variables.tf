@@ -1,16 +1,5 @@
-# Required variables:
-variable "env" {
-  description = "Environment (dev/prod)"
-  type        = string
-}
-
 variable "project_name" {
   description = "project name"
-  type        = string
-}
-
-variable "module_name" {
-  description = "module name"
   type        = string
 }
 
