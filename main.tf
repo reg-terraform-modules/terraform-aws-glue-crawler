@@ -18,6 +18,7 @@ resource "aws_glue_crawler" "this" {
   }
   s3_target {
     path = var.s3_source_path
+    sample_size = var.s3_target_sample_size
   }
 
   lifecycle {
