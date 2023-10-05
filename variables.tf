@@ -47,6 +47,12 @@ variable "s3_source_path" {
   type        = string
 }
 
+variable "s3_target_sample_size" {
+  type = string
+  description = "How many files per leaf directory to sample. Defaults to null"
+  default = null 
+}
+
 #Optional variables - default values used unless others specified:
 variable "resource_tags" {
   description = "Defaults to no tags. If needed, env vars can be given in parent module variables.tf, and assigned in child module call"
