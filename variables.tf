@@ -47,7 +47,7 @@ variable "s3_source_path" {
   type        = string
 }
 
-variable "s3_target_sample_size" {
+variable "s3_sample_size" {
   type = string
   description = "How many files per leaf directory to sample. Defaults to null"
   default = null 
